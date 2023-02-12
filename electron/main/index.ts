@@ -85,7 +85,7 @@ async function createWindow() {
     return { action: 'deny' }
   })
 
-  win.setFocusable(false);
+  win.setFocusable(true);
   //win.setAlwaysOnTop(true);
 }
 
@@ -93,6 +93,7 @@ app.whenReady().then(() => {
   createWindow()
 
   globalShortcut.register('ctrl+l', () => {
+    win.setAlwaysOnTop(ignoreMouseEvents)
     win.setIgnoreMouseEvents(ignoreMouseEvents)
     ignoreMouseEvents = !ignoreMouseEvents;
   });

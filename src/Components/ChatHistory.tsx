@@ -6,7 +6,7 @@ type Classes = Database['public']['Tables']['classes']['Row']
 type Messages = Database['public']['Tables']['messages']['Row']
 type Profiles = Database['public']['Tables']['profiles']['Row']
 
-function ChatHistory() {
+function ChatHistory(props: {classId: number | null}) {
   const user = useUser()
   const supabase = useSupabaseClient<Database>();
 
