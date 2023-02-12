@@ -1,15 +1,15 @@
 import Draggable from 'react-draggable'
+import { useState } from 'react';
+import { Database } from './database';
+import ChatHistory from './ChatHistory';
+
+type Messages = Database['public']['Tables']['messages']['Row']
 
 
 function Drag() {
     return (<Draggable>
         <div className="drag-ui">
-          <div className="message">
-            <div className="message-author">Username</div>
-            <div className="message-contents">This is a message.</div>
-            <div className="message-likes">&lt;3</div>
-            <div className="message-timeout"></div>
-          </div>
+            <ChatHistory></ChatHistory>
         </div>
       </Draggable>)
 }

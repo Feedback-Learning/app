@@ -3,6 +3,9 @@ import { useState } from "react";
 import "../App.scss";
 import Draggable from "react-draggable";
 import SignUp from "./SignUp";
+import CreateClass from "./CreateClass";
+import Drag from "./Drag";
+
 
 import { useEffect } from "react";
 
@@ -30,7 +33,7 @@ function App() {
   return (
     <SessionContextProvider supabaseClient={supabase}>
       <div className="App">
-        <SignUp></SignUp>
+        <Drag></Drag>
       </div>
     </SessionContextProvider>
   );

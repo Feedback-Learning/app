@@ -56,6 +56,8 @@ async function createWindow() {
       nodeIntegration: true,
       contextIsolation: false,
     },
+    autoHideMenuBar: true,
+    frame: false,
     transparent: true,
     alwaysOnTop: true
   })
@@ -67,6 +69,8 @@ async function createWindow() {
   } else {
     win.loadFile(indexHtml)
   }
+
+  win.setIgnoreMouseEvents(true);
 
   // Test actively push message to the Electron-Renderer
   win.webContents.on('did-finish-load', () => {
