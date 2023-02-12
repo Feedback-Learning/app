@@ -1,4 +1,4 @@
-import { app, BrowserWindow, shell, ipcMain, screen } from 'electron'
+import { app, BrowserWindow, shell, ipcMain, screen, globalShortcut  } from 'electron'
 import { release } from 'node:os'
 import { join } from 'node:path'
 
@@ -28,6 +28,8 @@ if (!app.requestSingleInstanceLock()) {
   app.quit()
   process.exit(0)
 }
+
+let ignoreMouseEvents = false;
 
 // Remove electron security warnings
 // This warning only shows in development mode
@@ -65,7 +67,7 @@ async function createWindow() {
   if (process.env.VITE_DEV_SERVER_URL) { // electron-vite-vue#298
     win.loadURL(url)
     // Open devTool if the app is not packaged
-    win.webContents.openDevTools()
+    // win.webContents.openDevTools()
   } else {
     win.loadFile(indexHtml)
   }
@@ -87,7 +89,14 @@ async function createWindow() {
   //win.setAlwaysOnTop(true);
 }
 
-app.whenReady().then(createWindow)
+app.whenReady().then(() => {
+  createWindow()
+
+  globalShortcut.register('ctrl+l', () => {
+    win.setIgnoreMouseEvents(ignoreMouseEvents)
+    ignoreMouseEvents = !ignoreMouseEvents;
+  });
+})
 
 app.on('window-all-closed', () => {
   win = null
@@ -101,6 +110,8 @@ app.on('second-instance', () => {
     win.focus()
   }
 })
+
+
 
 app.on('activate', () => {
   const allWindows = BrowserWindow.getAllWindows()
