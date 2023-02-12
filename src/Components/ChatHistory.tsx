@@ -77,7 +77,7 @@ function ChatHistory() {
   subscribeToClass(2);
 
   return (
-    <div>
+    <div className="messagesList">
       {
         chatMessages?.map((message) => {
           return <Message key={message.id} message={message}/>

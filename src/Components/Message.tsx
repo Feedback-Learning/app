@@ -34,25 +34,20 @@ function Message(props: { message: Message }) {
     }
   }
 
-  return <div className="w-full h-fit bg-white rounded-3xl flex flex-row px-3 py-3 text-lg shadow-md">
-    {/*<div className="h-full aspect-square flex justify-center items-center text-5xl" onClick={() => { updateUpvote() } }>
-      <svg fill={isUpvoted ? "rgb(255, 132, 0)" : "rgba(0,0,0,0.1)"} className="h-4/5 aspect-square translate-y-1 stroke-slate-300" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M5 15h14l-7-8z"/>
-      </svg>
-</div>*/}
-    <div className="flex flex-col w-full h-full">
-      <div className="block w-full h-full">
-        <span className="font-bold">
+  return <div className="messageContainer">
+    <div className="messageBodyContainer">
+      <div className="messageMetadata">
+        <span className="bold">
           {(props.message.user as unknown as any).name}
         </span>
-        <span className="italic ml-2 font-thin text-base">
+        <span className="pronouns">
           {(props.message.user as unknown as any).pronouns}
         </span>
-        <span className="ml-2 text-base font-thin float-right">
+        <span className="timestamp">
           {new Date(props.message.created_at as string).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}
         </span>
       </div>
-      <div>
+      <div className="messageContent">
         {props.message.content}
       </div>
     </div>

@@ -33,6 +33,7 @@ function App() {
   return (
     <SessionContextProvider supabaseClient={supabase}>
       <div className="App">
+        
         <Drag></Drag>
       </div>
     </SessionContextProvider>

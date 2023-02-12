@@ -103,3 +103,83 @@ code {
   right: 0;
   background-color: #1a1a1a;
 }
+
+.messageContainer {
+  display: flex; 
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: #ffffff; 
+  font-size: 1.125rem;
+  line-height: 1.75rem; 
+  flex-direction: row; 
+  width: 100%; 
+  border-radius: 1.5rem; 
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); 
+}
+
+.upvoteContainer {
+  display: flex; 
+  font-size: 3rem;
+  line-height: 1; 
+  justify-content: center; 
+  align-items: center; 
+  height: 100%; 
+}
+
+.upvoteSVG {
+  --transform-translate-y: 0.25rem; 
+  height: 80%; 
+}
+
+.messageBodyContainer {
+  color: black;
+  display: flex; 
+  flex-direction: column; 
+  width: 100%; 
+  height: fit-content;
+}
+
+.messageMetadata {
+  display: block; 
+  width: 100%; 
+  height: 100%; 
+}
+
+.bold {
+  float: left;
+  font-weight: 700; 
+}
+
+.pronouns {
+  float: left;
+  margin-left: 0.5rem; 
+  font-size: 1rem;
+  line-height: 1.5rem; 
+  font-style: italic; 
+  font-weight: 100; 
+}
+
+.timestamp {
+  float: right; 
+  margin-left: 0.5rem; 
+  font-size: 1rem;
+  line-height: 1.5rem; 
+  font-weight: 100; 
+}
+
+.messagesList {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column-reverse;
+  height: 600px;
+  width: 400px;
+  gap: 2em;
+}
+
+.messageContent {
+  display: flex;
+  justify-content: flex-start;
+}
