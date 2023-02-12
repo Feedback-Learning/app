@@ -1,30 +1,39 @@
-import nodeLogo from "../assets/node.svg"
-import { useState } from 'react'
-import '../App.scss'
+import nodeLogo from "../assets/node.svg";
+import { useState } from "react";
+import "../App.scss";
+import Draggable from "react-draggable";
+import SignUp from "./SignUp";
 
-console.log('[App.tsx]', `Hello world from Electron ${process.versions.electron}!`)
+import { useEffect } from "react";
+
+import { createClient } from "@supabase/supabase-js";
+import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
+import {
+  SessionContextProvider,
+  Session,
+  useSession,
+} from "@supabase/auth-helpers-react";
+
+const supabaseUrl = "https://osibsvbjsuvgoqyftyxr.supabase.co";
+const supabaseKey =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9zaWJzdmJqc3V2Z29xeWZ0eXhyIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzYxMzY5OTMsImV4cCI6MTk5MTcxMjk5M30.I-itePTB7VtcFe-cjwbh0jZNKunDWXjvJPUCQI-NHhc";
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+console.log(
+  "[App.tsx]",
+  `Hello world from Electron ${process.versions.electron}!`
+);
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [lock, setLock] = useState();
+  let session = useSession();
   return (
-    <div className="App">
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+    <SessionContextProvider supabaseClient={supabase}>
+      <div className="App">
+        <SignUp></SignUp>
       </div>
-      <p className="read-the-docs">
-        Click on the Electron + Vite logo to learn more
-      </p>
-      <div className="flex-center">
-        Place static files into the<code>/public</code> folder <img style={{ width: "5em" }} src={nodeLogo} alt="Node logo" />
-      </div>
-    </div>
-  )
+    </SessionContextProvider>
+  );
 }
 
-export default App
+export default App;

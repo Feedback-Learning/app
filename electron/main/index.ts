@@ -1,4 +1,4 @@
-import { app, BrowserWindow, shell, ipcMain } from 'electron'
+import { app, BrowserWindow, shell, ipcMain, screen } from 'electron'
 import { release } from 'node:os'
 import { join } from 'node:path'
 
@@ -41,7 +41,11 @@ const url = process.env.VITE_DEV_SERVER_URL
 const indexHtml = join(process.env.DIST, 'index.html')
 
 async function createWindow() {
+  const { width, height } = screen.getPrimaryDisplay().workAreaSize
+
   win = new BrowserWindow({
+    width: width,
+    height: height,
     title: 'Main window',
     icon: join(process.env.PUBLIC, 'favicon.ico'),
     webPreferences: {
@@ -52,6 +56,8 @@ async function createWindow() {
       nodeIntegration: true,
       contextIsolation: false,
     },
+    transparent: true,
+    alwaysOnTop: true
   })
 
   if (process.env.VITE_DEV_SERVER_URL) { // electron-vite-vue#298
@@ -74,7 +80,7 @@ async function createWindow() {
   })
 
   win.setFocusable(false);
-  win.setAlwaysOnTop(true);
+  //win.setAlwaysOnTop(true);
 }
 
 app.whenReady().then(createWindow)
