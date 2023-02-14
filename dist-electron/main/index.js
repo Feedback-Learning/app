@@ -55,11 +55,19 @@ async function createWindow() {
 }
 import_electron.app.whenReady().then(() => {
   createWindow();
-  import_electron.globalShortcut.register("ctrl+l", () => {
-    win.setAlwaysOnTop(ignoreMouseEvents);
-    win.setIgnoreMouseEvents(ignoreMouseEvents);
-    ignoreMouseEvents = !ignoreMouseEvents;
-  });
+  if (process.platform !== "darwin") {
+    import_electron.globalShortcut.register("ctrl+l", () => {
+      win == null ? void 0 : win.setAlwaysOnTop(ignoreMouseEvents);
+      win == null ? void 0 : win.setIgnoreMouseEvents(ignoreMouseEvents);
+      ignoreMouseEvents = !ignoreMouseEvents;
+    });
+  } else {
+    import_electron.globalShortcut.register("cmd+l", () => {
+      win == null ? void 0 : win.setAlwaysOnTop(ignoreMouseEvents);
+      win == null ? void 0 : win.setIgnoreMouseEvents(ignoreMouseEvents);
+      ignoreMouseEvents = !ignoreMouseEvents;
+    });
+  }
 });
 import_electron.app.on("window-all-closed", () => {
   win = null;
