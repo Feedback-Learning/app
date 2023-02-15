@@ -107,7 +107,7 @@ app.whenReady().then(() => {
       ignoreMouseEvents = !ignoreMouseEvents;
     });
   } else {
-    globalShortcut.register("cmd+l", () => {
+    globalShortcut.register("cmd+ctrl+l", () => {
       win?.setAlwaysOnTop(ignoreMouseEvents);
       win?.setIgnoreMouseEvents(ignoreMouseEvents);
       ignoreMouseEvents = !ignoreMouseEvents;
