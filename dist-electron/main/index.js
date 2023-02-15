@@ -62,12 +62,15 @@ import_electron.app.whenReady().then(() => {
       ignoreMouseEvents = !ignoreMouseEvents;
     });
   } else {
-    import_electron.globalShortcut.register("cmd+l", () => {
+    import_electron.globalShortcut.register("cmd+ctrl+l", () => {
       win == null ? void 0 : win.setAlwaysOnTop(ignoreMouseEvents);
       win == null ? void 0 : win.setIgnoreMouseEvents(ignoreMouseEvents);
       ignoreMouseEvents = !ignoreMouseEvents;
     });
   }
+  import_electron.globalShortcut.register("cmd+q", () => {
+    import_electron.app.quit();
+  });
 });
 import_electron.app.on("window-all-closed", () => {
   win = null;

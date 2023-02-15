@@ -106,12 +106,18 @@ app.whenReady().then(() => {
       win?.setIgnoreMouseEvents(ignoreMouseEvents);
       ignoreMouseEvents = !ignoreMouseEvents;
     });
+    globalShortcut.register("ctrl+q", () => {
+      app.quit();
+    })
   } else {
     globalShortcut.register("cmd+ctrl+l", () => {
       win?.setAlwaysOnTop(ignoreMouseEvents);
       win?.setIgnoreMouseEvents(ignoreMouseEvents);
       ignoreMouseEvents = !ignoreMouseEvents;
-    })
+    });
+    globalShortcut.register("cmd+q", () => {
+      app.quit();
+    });
   }
 });
 
